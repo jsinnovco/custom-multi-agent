@@ -24,6 +24,7 @@ from kernel_agents.human_agent import HumanAgent
 from kernel_agents.marketing_agent import MarketingAgent
 from kernel_agents.planner_agent import PlannerAgent
 from kernel_agents.procurement_agent import ProcurementAgent
+from kernel_agents.event_planner_agent import EventPlannerAgent
 from kernel_agents.product_agent import ProductAgent
 from kernel_agents.tech_support_agent import TechSupportAgent
 from models.messages_kernel import AgentType
@@ -94,6 +95,7 @@ async def get_agents(session_id: str, user_id: str) -> Dict[str, Any]:
             AgentType.PRODUCT: ProductAgent.__name__,
             AgentType.MARKETING: MarketingAgent.__name__,
             AgentType.PROCUREMENT: ProcurementAgent.__name__,
+            AgentType.EVENT_PLANNER: EventPlannerAgent.__name__,
             AgentType.TECH_SUPPORT: TechSupportAgent.__name__,
             AgentType.GENERIC: TechSupportAgent.__name__,
             AgentType.HUMAN: HumanAgent.__name__,

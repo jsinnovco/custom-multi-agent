@@ -1,5 +1,6 @@
 import datetime
 import logging
+import os
 import uuid
 from typing import Any, Dict, List, Optional, Tuple
 
@@ -12,6 +13,7 @@ from kernel_tools.generic_tools import GenericTools
 from kernel_tools.hr_tools import HrTools
 from kernel_tools.marketing_tools import MarketingTools
 from kernel_tools.procurement_tools import ProcurementTools
+from kernel_tools.event_planner_tools import EventPlannerTools
 from kernel_tools.product_tools import ProductTools
 from kernel_tools.tech_support_tools import TechSupportTools
 from models.messages_kernel import (
@@ -27,6 +29,7 @@ from models.messages_kernel import (
 )
 from semantic_kernel.functions import KernelFunction
 from semantic_kernel.functions.kernel_arguments import KernelArguments
+from semantic_kernel.agents.open_ai.run_polling_options import RunPollingOptions
 
 
 class PlannerAgent(BaseAgent):
@@ -88,6 +91,7 @@ class PlannerAgent(BaseAgent):
             AgentType.MARKETING.value,
             AgentType.PRODUCT.value,
             AgentType.PROCUREMENT.value,
+            AgentType.EVENT_PLANNER.value,
             AgentType.TECH_SUPPORT.value,
             AgentType.GENERIC.value,
         ]
@@ -96,6 +100,7 @@ class PlannerAgent(BaseAgent):
             AgentType.MARKETING: MarketingTools.generate_tools_json_doc(),
             AgentType.PRODUCT: ProductTools.generate_tools_json_doc(),
             AgentType.PROCUREMENT: ProcurementTools.generate_tools_json_doc(),
+            AgentType.EVENT_PLANNER: EventPlannerTools.generate_tools_json_doc(),
             AgentType.TECH_SUPPORT: TechSupportTools.generate_tools_json_doc(),
             AgentType.GENERIC: GenericTools.generate_tools_json_doc(),
         }
@@ -329,12 +334,38 @@ class PlannerAgent(BaseAgent):
 
             thread = None
             # thread = self.client.agents.create_thread(thread_id=input_task.session_id)
+
+            # Build a proper SDK ResponseFormatJsonSchemaType instance so the
+            # Azure SDK instrumentor receives a typed object (not a plain dict).
+            try:
+                schema = PlannerResponsePlan.model_json_schema()
+            except Exception:
+                schema = PlannerResponsePlan.model_json_schema() if hasattr(PlannerResponsePlan, 'model_json_schema') else {}
+
+            response_format = ResponseFormatJsonSchema(
+                name=PlannerResponsePlan.__name__,
+                description=f"respond with {PlannerResponsePlan.__name__.lower()}",
+                schema=schema,
+            )
+
+            response_format_type = ResponseFormatJsonSchemaType(json_schema=response_format)
+
+            # Configure polling options (increase timeout). Make configurable via AZURE_AI_RUN_POLLING_TIMEOUT_MINUTES env var.
+            try:
+                timeout_minutes = int(os.getenv("AZURE_AI_RUN_POLLING_TIMEOUT_MINUTES", "5"))
+            except Exception:
+                timeout_minutes = 5
+
+            polling_options = RunPollingOptions(run_polling_timeout=datetime.timedelta(minutes=timeout_minutes))
+
             async_generator = self.invoke(
                 arguments=kernel_args,
                 settings={
                     "temperature": 0.0,  # Keep temperature low for consistent planning
-                    "max_tokens": 10096,  # Ensure we have enough tokens for the full plan
+                    "max_tokens": 100000,  # Ensure we have enough tokens for the full plan
                 },
+                response_format=response_format_type,
+                polling_options=polling_options,
                 thread=thread,
             )
 

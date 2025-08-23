@@ -1,0 +1,9 @@
+    {
+      "name": "Python Debugger: Backend",
+      "type": "debugpy",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/src/backend",
+      "module": "uvicorn",
+      "args": ["app:app", "--reload"],
+      "jinja": true
+    }

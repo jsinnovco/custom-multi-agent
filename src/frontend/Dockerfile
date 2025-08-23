@@ -32,8 +32,8 @@ WORKDIR /app
 COPY pyproject.toml requirements.txt* uv.lock* ./
 
 # Install Python dependencies using UV
-RUN --mount=type=cache,target=/root/.cache/uv \
-    if [ -f "requirements.txt" ]; then \
+COPY requirements.txt* pyproject.toml* ./
+RUN if [ -f "requirements.txt" ]; then \
       uv pip install --system -r requirements.txt && uv pip install --system "uvicorn[standard]";  \
     else \
       uv pip install --system pyproject.toml && uv pip install --system "uvicorn[standard]"; \
