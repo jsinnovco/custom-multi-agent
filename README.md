@@ -69,9 +69,11 @@ Quick deploy
 </h2>
 
 ### How to install or deploy
-Follow the quick deploy steps on the deployment guide to deploy this solution to your own Azure subscription.
+Follow the quick deploy steps on the deployment guide to deploy this solution to your own Azure subscription. YOU MUST DO THIS STEP IN ORDER TO PROVISION THE ENVIRONMENT FIRST. 
 
 [Click here to launch the deployment guide](./docs/DeploymentGuide.md)
+
+NOTE: Usually all you need to do is: from an Azure CLI terminal, run: ```az login```, choose the correct subscription and finish login. Then run ```azd up```
 <br/><br/>
 
 | [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/microsoft/Multi-Agent-Custom-Automation-Engine-Solution-Accelerator) | [![Open in Dev Containers](https://img.shields.io/static/v1?style=for-the-badge&label=Dev%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/microsoft/Multi-Agent-Custom-Automation-Engine-Solution-Accelerator) |
@@ -81,6 +83,24 @@ Follow the quick deploy steps on the deployment guide to deploy this solution to
 
 > ⚠️ **Important: Check Azure OpenAI Quota Availability**
  <br/>To ensure sufficient quota is available in your subscription, please follow [quota check instructions guide](./docs/quota_check.md) before you deploy the solution.
+
+<br/>
+After you are done provisioning the new environment (takes about 10 mins), you should be able to go to the Azure Portal (https://portal.azure.com), go to the App Service deployed and click 'Browse'. This should open up a window like the image below. 
+
+NOTE: When you first auto-provision the environment, it only deploys the base from this repo: https://github.com/microsoft/Multi-Agent-Custom-Automation-Engine-Solution-Accelerator which means no custom agents yet. 
+
+STOP!! Before you start playing with the application, go to the AI Foundry service (also automatically deployed for you), open the service in AI Foundry portal (https://ai.azure.com) and then click on 'Agents' tab. It should have created a base agent for you.  
+
+|![image](./docs/images/readme/app-first-run.png)|
+
+|![image](./docs/images/readme/ai-foundry-first-run.png)|
+
+Next, play with the application. Click on the badges to perform tasks with multi agents and see how they are created in Azure AI Foundry: 
+|![image](./docs/images/readme/ai-foundry-second-run.png)|
+
+Your base application is working. 
+
+Now, we will 
 
 <br/>
 
