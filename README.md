@@ -14,7 +14,7 @@ Please refer to the original repo if you are interested in only deploying an out
 
 <div align="center">
   
-[**SOLUTION OVERVIEW**](#solution-overview) \| [**QUICK DEPLOY**](#quick-deploy) \| [**BUSINESS SCENARIO**](#business-scenario) \| [**SUPPORTING DOCUMENTATION**](#supporting-documentation)
+[**SOLUTION OVERVIEW**](#solution-overview) \| [**QUICK DEPLOY**](#quick-deploy) \| [**BUSINESS SCENARIO**](#business-scenario) \| [**CODE CHANGES**](#code-changes)| [**SUPPORTING DOCUMENTATION**](#supporting-documentation)
 
 </div>
 <br/>
@@ -189,6 +189,10 @@ By using the *Multi-Agent Custom Automation Engine* solution accelerator, users 
 
 </details>
 
+<br /><br />
+<h2><img src="./docs/images/readme/quick-deploy.png" width="48" />
+Code Changes
+</h2>
 <br /><br />
 
 <h2><img src="./docs/images/readme/supporting-documentation.png" width="48" />
