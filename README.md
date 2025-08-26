@@ -91,17 +91,59 @@ NOTE: When you first auto-provision the environment, it only deploys the base fr
 
 STOP!! Before you start playing with the application, go to the AI Foundry service (also automatically deployed for you), open the service in AI Foundry portal (https://ai.azure.com) and then click on 'Agents' tab. It should have created a base agent for you.  
 
-|![image](./docs/images/readme/app-first-run.png)|
+![image](./docs/images/readme/app-first-run.png)
 
-|![image](./docs/images/readme/ai-foundry-first-run.png)|
+![image](./docs/images/readme/ai-foundry-first-run.png)
 
 Next, play with the application. Click on the badges to perform tasks with multi agents and see how they are created in Azure AI Foundry: 
-|![image](./docs/images/readme/ai-foundry-second-run.png)|
+![image](./docs/images/readme/ai-foundry-second-run.png)
 
 Your base application is working. 
 
-Now, we will 
+Now, we will deploy custom agents and the new UI associated with it. 
+Step 0. Create an Azure Container Registry (ACR) in the resource group you are using. You can do it manually (https://learn.microsoft.com/en-us/azure/container-registry/container-registry-get-started-portal?tabs=azure-cli) in the Azure Portal or via the command line (https://learn.microsoft.com/en-us/azure/container-registry/container-registry-get-started-azure-cli). NOTE: the auto-provision templates do not create an ACR automatically for you. 
 
+Step 1. Go to your codebase, run  
+
+```cd src/backend```
+<br/>
+
+Step 2. Login to ACR: 
+
+```az acr login --name <acr-name>```
+
+
+Step 3. Build and push your backend code to the ACR: 
+
+```az acr build --registry <acr-name> --resource-group  <rg-name> --image backendmacae:latest . ```
+
+Step 4. Repeat the above steps but for the frontend code. You may need to log into ACR again: 
+
+```cd src/frontend```
+<br/>
+
+```az acr login --name <acr-name>```
+<br/>
+
+```az acr build --registry <acr-name> --resource-group <rg-name> --image frontendmacae:latest .```
+<br/>
+
+Step 5. Go to the container and update revision to point to new backend image: 
+
+![image](./docs/images/readme/container-new-rev.png)
+
+Step 6. Update frontend website (assuming your frontend image is called 'frontendmacae:latest')
+
+```az webapp config container set --resource-group <rg-name> --name <frontend-web-app-name> --container-image-name <container-name>.azurecr.io/frontendmacae:latest  --container-registry-url https://<acr-name>.azurecr.io```
+<br/>
+
+Step 7. Restart your Azure App Service in the Azure Portal and then click 'Browse' again. 
+
+You should now see the new blade for 'planning an event'. If you click on it, the workflow will walk through the new agent code we added (see details below). 
+
+![image](./docs/images/readme/app-second-run.png)
+
+![image](./docs/images/readme/ai-foundry-third-run.png)
 <br/>
 
 >⚠️ **Important:** To avoid unnecessary costs, remember to take down your app if it's no longer in use,
