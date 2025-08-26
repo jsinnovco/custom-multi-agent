@@ -139,7 +139,7 @@ Step 6. Update frontend website (assuming your frontend image is called 'fronten
 
 Step 7. Restart your Azure App Service in the Azure Portal and then click 'Browse' again. 
 
-You should now see the new blade for 'planning an event'. If you click on it, the workflow will walk through the new agent code we added (see details below). 
+You should now see the new blade for 'planning an event'. If you click on it, the workflow will walk through the new agent code we added (see details below in [**CODE CHANGES**](#code-changes)). 
 
 ![image](./docs/images/readme/app-second-run.png)
 
