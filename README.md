@@ -1,10 +1,14 @@
-# Multi-Agent Custom Automation Engine Solution Accelerator
+# Adding Your Own Agents to the Multi-Agent Solution Accelerator
 
-Welcome to the *Multi-Agent Custom Automation Engine* solution accelerator, designed to help businesses leverage AI agents for automating complex organizational tasks. This accelerator provides a foundation for building AI-driven orchestration systems that can coordinate multiple specialized agents to accomplish various business processes.
+Hi there, this GitHub repo builds off of this repo: https://github.com/microsoft/Multi-Agent-Custom-Automation-Engine-Solution-Accelerator directly with the following changes: 
 
-When dealing with complex organizational tasks, users often face significant challenges, including coordinating across multiple departments, maintaining consistency in processes, and ensuring efficient resource utilization.
+1. A new customized agent added (by extending the codebase).
+2. Response formatting handles more efficiently
+3. Chat timeout increased
+4. MAX_TOKENS increased
+5. Leveraging GPT5 instead of GPT4-o.
 
-The Multi-Agent Custom Automation Engine solution accelerator allows users to specify tasks and have them automatically processed by a group of AI agents, each specialized in different aspects of the business. This automation not only saves time but also ensures accuracy and consistency in task execution.
+Please refer to the original repo if you are interested in only deploying an out of the box solution and provision a ready made environment (although we will do these in this repo as well witht the instructions below). Welcome to the *Multi-Agent Custom Automation Engine* solution accelerator, designed to help businesses leverage AI agents for automating complex organizational tasks. This accelerator provides a foundation for building AI-driven orchestration systems that can coordinate multiple specialized agents to accomplish various business processes.
 
 <br/>
 
@@ -28,11 +32,6 @@ The solution leverages Azure OpenAI Service, Azure Container Apps, Azure Cosmos 
 ### Agentic architecture
 |![image](./docs/images/readme/agent_flow.png)|
 |---|
-
-### How to customize
-If you'd like to customize the solution accelerator, here are some common areas to start:
-
-[Custom scenario](./docs/CustomizeSolution.md)
 
 <br/>
 
