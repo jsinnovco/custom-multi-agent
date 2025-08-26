@@ -193,6 +193,21 @@ By using the *Multi-Agent Custom Automation Engine* solution accelerator, users 
 <h2><img src="./docs/images/readme/quick-deploy.png" width="48" />
 Code Changes
 </h2>
+
+### Frontend code changes: 
+  In the file: ./src/frontend/src/models/homeInput.tsx, add a new blade for your new agent (Event Planner in our case): 
+
+    {
+        id: "event",
+        title: "Plan an event",
+        description: "Help me plan an event like TechConnect or Ignite.",
+        icon: <PeopleTeam20Regular />,
+    }
+
+   Add the import for PeopleTeam20Regular icon as well.
+
+   In the enums.tsx file, add the ```EVENT_PLANNER = "Event_Planner_Agent"``` in your AgentType enum.
+
 <br /><br />
 
 <h2><img src="./docs/images/readme/supporting-documentation.png" width="48" />
