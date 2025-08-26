@@ -3,12 +3,12 @@
 Hi there, this GitHub repo builds off of this repo: https://github.com/microsoft/Multi-Agent-Custom-Automation-Engine-Solution-Accelerator directly with the following changes: 
 
 1. A new customized agent added (by extending the codebase).
-2. Response formatting handles more efficiently
+2. Response formatting handle dmore efficiently
 3. Chat timeout increased
 4. MAX_TOKENS increased
 5. Leveraging GPT5 instead of GPT4-o.
 
-Please refer to the original repo if you are interested in only deploying an out of the box solution and provision a ready made environment (although we will do these in this repo as well witht the instructions below). Welcome to the *Multi-Agent Custom Automation Engine* solution accelerator, designed to help businesses leverage AI agents for automating complex organizational tasks. This accelerator provides a foundation for building AI-driven orchestration systems that can coordinate multiple specialized agents to accomplish various business processes.
+Please refer to the original repo if you are interested in only deploying an out of the box solution and provision a ready made environment (although we will do these in this repo as well with the instructions below). 
 
 <br/>
 
@@ -81,26 +81,6 @@ Follow the quick deploy steps on the deployment guide to deploy this solution to
 
 > ⚠️ **Important: Check Azure OpenAI Quota Availability**
  <br/>To ensure sufficient quota is available in your subscription, please follow [quota check instructions guide](./docs/quota_check.md) before you deploy the solution.
-
-<br/>
-
-### Prerequisites and Costs
-
-To deploy this solution accelerator, ensure you have access to an [Azure subscription](https://azure.microsoft.com/free/) with the necessary permissions to create **resource groups and resources**. Follow the steps in [Azure Account Set Up](./docs/AzureAccountSetUp.md).
-
-Check the [Azure Products by Region](https://azure.microsoft.com/en-us/explore/global-infrastructure/products-by-region/table) page and select a **region** where the following services are available: Azure OpenAI Service, Azure AI Search, and Azure Semantic Search.
-
-Here are some example regions where the services are available: East US, East US2, Japan East, UK South, Sweden Central.
-
-Pricing varies per region and usage, so it isn't possible to predict exact costs for your usage. The majority of the Azure resources used in this infrastructure are on usage-based pricing tiers. However, Azure Container Registry has a fixed cost per registry per day.
-
-Use the [Azure pricing calculator](https://azure.microsoft.com/en-us/pricing/calculator) to calculate the cost of this solution in your subscription. [Review a sample pricing sheet for the architecture](https://azure.com/e/86d0eefbe4dd4a23981c1d3d4f6fe7ed).
-| Product | Description | Cost |
-|---|---|---|
-| [Azure OpenAI Service](https://learn.microsoft.com/azure/ai-services/openai/) | Powers the AI agents for task automation | [Pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) |
-| [Azure Container Apps](https://learn.microsoft.com/azure/container-apps/) | Hosts the web application frontend | [Pricing](https://azure.microsoft.com/pricing/details/container-apps/) |
-| [Azure Cosmos DB](https://learn.microsoft.com/azure/cosmos-db/) | Stores metadata and processing results | [Pricing](https://azure.microsoft.com/pricing/details/cosmos-db/) |
-| [Azure Container Registry](https://learn.microsoft.com/azure/container-registry/) | Stores container images for deployment | [Pricing](https://azure.microsoft.com/pricing/details/container-registry/) |
 
 <br/>
 
