@@ -32,7 +32,7 @@ export const quickTasks: QuickTask[] = [
         description: "Write a press release about our current products.",
         icon: <DocumentEdit20Regular />,
     },
-        {
+    {
         id: "event",
         title: "Plan an event",
         description: "Help me plan an event like TechConnect or Ignite.",
