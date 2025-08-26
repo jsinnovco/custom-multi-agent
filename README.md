@@ -30,7 +30,7 @@ The solution leverages Azure OpenAI Service, Azure Container Apps, Azure Cosmos 
 |---|
 
 ### Agentic architecture
-|![image](./docs/images/readme/agent_flow.png)|
+|![image](./docs/images/readme/agent_flow_custom.png)|
 |---|
 
 <br/>
