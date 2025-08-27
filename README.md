@@ -91,12 +91,19 @@ NOTE: When you first auto-provision the environment, it only deploys the base fr
 
 STOP!! Before you start playing with the application, go to the AI Foundry service (also automatically deployed for you), open the service in AI Foundry portal (https://ai.azure.com) and then click on 'Agents' tab. It should have created a base agent for you.  
 
-![image](./docs/images/readme/app-first-run.png)
+<p align="center">
+<img src="./docs/images/readme/app-first-run.png" width="80%" style="display: block; margin: auto;" />
+</p>
+<br/>
 
-![image](./docs/images/readme/ai-foundry-first-run.png)
+<p align="center">
+<img src="./docs/images/readme/ai-foundry-first-run.png)" width="80%" style="display: block; margin: auto;" />
+</p>
 
 Next, play with the application. Click on the badges to perform tasks with multi agents and see how they are created in Azure AI Foundry: 
-![image](./docs/images/readme/ai-foundry-second-run.png)
+<p align="center">
+<img src="./docs/images/readme/ai-foundry-second-run.png" width="80%" style="display: block; margin: auto;" />
+</p>
 
 Your base application is working. 
 
@@ -129,8 +136,9 @@ Step 4. Repeat the above steps but for the frontend code. You may need to log in
 <br/>
 
 Step 5. Go to the container and update revision to point to new backend image: 
-
-![image](./docs/images/readme/container-new-rev.png)
+<p align="center">
+<img src="./docs/images/readme/container-new-rev.png" width="80%" style="display: block; margin: auto;" />
+</p>
 
 Step 6. Update frontend website (assuming your frontend image is called 'frontendmacae:latest')
 
@@ -141,9 +149,13 @@ Step 7. Restart your Azure App Service in the Azure Portal and then click 'Brows
 
 You should now see the new blade for 'planning an event'. If you click on it, the workflow will walk through the new agent code we added (see details below in [**CODE CHANGES**](#code-changes)). 
 
-![image](./docs/images/readme/app-second-run.png)
-
-![image](./docs/images/readme/ai-foundry-third-run.png)
+<p align="center">
+<img src="./docs/images/readme/app-second-run.png" width="80%" style="display: block; margin: auto;" />
+</p>
+<br/>
+<p align="center">
+<img src="./docs/images/readme/ai-foundry-third-run.png" width="80%" style="display: block; margin: auto;" />
+</p>
 <br/>
 
 >⚠️ **Important:** To avoid unnecessary costs, remember to take down your app if it's no longer in use,
@@ -155,6 +167,7 @@ Business Scenario
 </h2>
 
 |![image](./docs/images/readme/application.png)|
+
 |---|
 
 <br/>
@@ -195,8 +208,7 @@ Code Changes
 </h2>
 
 ### Frontend code changes: 
-  In the file: ./src/frontend/src/models/homeInput.tsx, add a new blade for your new agent (Event Planner in our case): 
-
+1. In the file: ./src/frontend/src/models/homeInput.tsx, add a new blade for your new agent (Event Planner in our case): 
     {
         id: "event",
         title: "Plan an event",
@@ -206,7 +218,9 @@ Code Changes
 
    Add the import for PeopleTeam20Regular icon as well.
 
-   In the enums.tsx file, add the ```EVENT_PLANNER = "Event_Planner_Agent"``` in your AgentType enum.
+2. In the enums.tsx file, add the ```EVENT_PLANNER = "Event_Planner_Agent"``` in your AgentType enum.
+
+### Backend code changes: 
 
 <br /><br />
 
