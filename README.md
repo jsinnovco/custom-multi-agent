@@ -67,7 +67,7 @@ The solution leverages Azure OpenAI Service, Azure Container Apps, Azure Cosmos 
 
 <br /><br />
 <h2><img src="./docs/images/readme/quick-deploy.png" width="48" />
-Quick deploy
+Deploying and Testing Base Infrastructure
 </h2>
 
 ### How to install or deploy
@@ -87,7 +87,8 @@ Follow the quick deploy steps on the deployment guide to deploy this solution to
  <br/>To ensure sufficient quota is available in your subscription, please follow [quota check instructions guide](./docs/quota_check.md) before you deploy the solution.
 
 <br/>
-After you are done provisioning the new environment (takes about 10 mins), you should be able to go to the [**Azure Portal**](https://portal.azure.com), go to the App Service deployed and click 'Browse'. This should open up a window like the image below. 
+### Testing what was deployed
+After you are done provisioning the new environment (takes about 10 mins), you should be able to go to the Azure Portal(https://portal.azure.com), go to the App Service deployed and click 'Browse'. This should open up a window like the image below. 
 
 <p align="center">
 <img src="./docs/images/readme/app-first-run.png" width="80%" style="display: block; margin: auto;" />
@@ -109,6 +110,10 @@ Next, you can start playing with the application. Click on the badges to perform
 
 Your base application is working! 
 
+<br /><br />
+<h2><img src="./docs/images/readme/quick-deploy.png" width="48" />
+Adding Your Own Agent
+</h2>
 Now, we will deploy custom agents and the new UI associated with it. 
 Step 0. Create an Azure Container Registry (ACR) in the resource group you are using. You can do it manually (https://learn.microsoft.com/en-us/azure/container-registry/container-registry-get-started-portal?tabs=azure-cli) in the Azure Portal or via the command line (https://learn.microsoft.com/en-us/azure/container-registry/container-registry-get-started-azure-cli). NOTE: the auto-provision templates do not create an ACR automatically for you. 
 
