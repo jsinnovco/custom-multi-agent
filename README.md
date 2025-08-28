@@ -16,7 +16,7 @@ This repo is being developed so keep an eye out for more featueres (like MCP int
 
 <div align="center">
   
-[**SOLUTION OVERVIEW**](#solution-overview) \| [**QUICK DEPLOY AND TESTING**](#deploying-and-testing-base-infrastructure) \| [**CODE CHANGES**](#code-changes)| [**BUSINESS SCENARIO**](#business-scenario) \| [**SUPPORTING DOCUMENTATION**](#supporting-documentation)
+[**SOLUTION OVERVIEW**](#solution-overview) \| [**QUICK DEPLOY AND TESTING**](#deploying-and-testing-base-infrastructure) \| [**ADDING YOUR OWN AGENT**](#adding-your-own-agent)| [**BUSINESS SCENARIO**](#business-scenario) \| [**SUPPORTING DOCUMENTATION**](#supporting-documentation)
 
 </div>
 <br/>
@@ -156,7 +156,7 @@ Step 6. Update frontend website (assuming your frontend image is called 'fronten
 
 Step 7. Restart your Azure App Service in the Azure Portal and then click 'Browse' again. 
 
-You should now see the new blade for 'planning an event'. If you click on it, the workflow will walk through the new agent code we added (see details below in [**CODE CHANGES**](#code-changes)). 
+You should now see the new blade for 'planning an event'. If you click on it, the workflow will walk through the new agent code we added (see details below). 
 
 <p align="center">
 <img src="./docs/images/readme/app-second-run.png" width="80%" style="display: block; margin: auto;" />
@@ -170,9 +170,6 @@ You should now see the new blade for 'planning an event'. If you click on it, th
 >⚠️ **Important:** To avoid unnecessary costs, remember to take down your app if it's no longer in use,
 either by deleting the resource group in the Portal or running `azd down`.
 <br /><br />
-<h2><img src="./docs/images/readme/quick-deploy.png" width="48" />
-Code Changes
-</h2>
 
 ### Frontend code changes: 
 1. In the file: ./src/frontend/src/models/homeInput.tsx, add a new blade for your new agent (Event Planner in our case): 
