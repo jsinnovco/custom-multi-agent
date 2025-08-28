@@ -16,7 +16,7 @@ This repo is being developed so keep an eye out for more featueres (like MCP int
 
 <div align="center">
   
-[**SOLUTION OVERVIEW**](#solution-overview) \| [**QUICK DEPLOY**](#quick-deploy) \| [**BUSINESS SCENARIO**](#business-scenario) \| [**CODE CHANGES**](#code-changes)| [**SUPPORTING DOCUMENTATION**](#supporting-documentation)
+[**SOLUTION OVERVIEW**](#solution-overview) \| [**QUICK DEPLOY AND TESTING**](#deploying-and-testing-base-infrastructure) \| [**CODE CHANGES**](#code-changes)| [**BUSINESS SCENARIO**](#business-scenario) \| [**SUPPORTING DOCUMENTATION**](#supporting-documentation)
 
 </div>
 <br/>
