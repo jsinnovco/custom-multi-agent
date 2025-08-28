@@ -97,7 +97,7 @@ STOP!! Before you start playing with the application, go to the AI Foundry servi
 <br/>
 
 <p align="center">
-<img src="./docs/images/readme/ai-foundry-first-run.png)" width="80%" style="display: block; margin: auto;" />
+<img src="./docs/images/readme/ai-foundry-first-run.png" width="80%" style="display: block; margin: auto;" />
 </p>
 
 Next, play with the application. Click on the badges to perform tasks with multi agents and see how they are created in Azure AI Foundry: 
