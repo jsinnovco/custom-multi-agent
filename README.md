@@ -160,15 +160,42 @@ You should now see the new blade for 'planning an event'. If you click on it, th
 
 >⚠️ **Important:** To avoid unnecessary costs, remember to take down your app if it's no longer in use,
 either by deleting the resource group in the Portal or running `azd down`.
+<br /><br />
+<h2><img src="./docs/images/readme/quick-deploy.png" width="48" />
+Code Changes
+</h2>
 
+### Frontend code changes: 
+1. In the file: ./src/frontend/src/models/homeInput.tsx, add a new blade for your new agent (Event Planner in our case): 
+    {
+        id: "event",
+        title: "Plan an event",
+        description: "Help me plan an event like TechConnect or Ignite.",
+        icon: <PeopleTeam20Regular />,
+    }
+
+   Add the import for PeopleTeam20Regular icon as well.
+
+2. In the enums.tsx file, add the ```EVENT_PLANNER = "Event_Planner_Agent"``` in your AgentType enum.
+
+### Backend code changes: 
+1. Copy one of the existing agent files (for eg. src/backend/kernel_agents/PROCUREMENT_AGENT.PY), rename it to your agent and add the instructions to the agent in the ```    def default_system_message(agent_name=None)``` method. This is the place where you 'define' your agent's capabilities. The more comprehensive, exhaustive of an instruction you can give, the more accurate the agent will be. Change the AgentTypes where applicable.
+
+2. Also copy one of the existing tools (for eg. src/backend/kernel_tools/PROCUREMENT_TOOLS.PY). This is where you give your agent the helpers or the tools (for eg. MCP tools). In our current example, we've created basic functions that define the full capabilities of what the EventPlanner Agent can do.
+
+NOTE: When the Planner Agent formulates a plan, it reads through the all agent instructions, capabilities and tools definitions. So the more functions (tasks it can perform) you define, the better and more accurate the Planner Agent will be. 
+
+3. Next add your Event Planner Agent related code to agent_factory.py, group_chat_manager.py and planner_agent.py. In all of these, you only need to update the list (dictionary) of agents defined at the top.
+
+NOTE: In our current example, in the planner_agent.py file, we have added some structured response formatting (to support newer models like gpt5, increased timeout and the max_tokens) in the _create_structured_plan() method. You can adjust these and more (like the temperature setting) to test how your agent responds. 
+
+<br /><br />
 <br /><br />
 <h2><img src="./docs/images/readme/business-scenario.png" width="48" />
 Business Scenario
 </h2>
 
-|![image](./docs/images/readme/application.png)|
-
-|---|
+![image](./docs/images/readme/application.png)
 
 <br/>
 
@@ -201,28 +228,6 @@ By using the *Multi-Agent Custom Automation Engine* solution accelerator, users 
   Enables organizations to handle increasing automation demands without proportional resource increases.
 
 </details>
-
-<br /><br />
-<h2><img src="./docs/images/readme/quick-deploy.png" width="48" />
-Code Changes
-</h2>
-
-### Frontend code changes: 
-1. In the file: ./src/frontend/src/models/homeInput.tsx, add a new blade for your new agent (Event Planner in our case): 
-    {
-        id: "event",
-        title: "Plan an event",
-        description: "Help me plan an event like TechConnect or Ignite.",
-        icon: <PeopleTeam20Regular />,
-    }
-
-   Add the import for PeopleTeam20Regular icon as well.
-
-2. In the enums.tsx file, add the ```EVENT_PLANNER = "Event_Planner_Agent"``` in your AgentType enum.
-
-### Backend code changes: 
-
-<br /><br />
 
 <h2><img src="./docs/images/readme/supporting-documentation.png" width="48" />
 Supporting documentation
