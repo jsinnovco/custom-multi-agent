@@ -100,12 +100,12 @@ STOP!! Before you start playing with the application, go to the AI Foundry servi
 <img src="./docs/images/readme/ai-foundry-first-run.png" width="80%" style="display: block; margin: auto;" />
 </p>
 
-Next, play with the application. Click on the badges to perform tasks with multi agents and see how they are created in Azure AI Foundry: 
+Next, you can start playing with the application. Click on the badges to perform tasks with multi agents and see how they are created in Azure AI Foundry: 
 <p align="center">
 <img src="./docs/images/readme/ai-foundry-second-run.png" width="80%" style="display: block; margin: auto;" />
 </p>
 
-Your base application is working. 
+Your base application is working! 
 
 Now, we will deploy custom agents and the new UI associated with it. 
 Step 0. Create an Azure Container Registry (ACR) in the resource group you are using. You can do it manually (https://learn.microsoft.com/en-us/azure/container-registry/container-registry-get-started-portal?tabs=azure-cli) in the Azure Portal or via the command line (https://learn.microsoft.com/en-us/azure/container-registry/container-registry-get-started-azure-cli). NOTE: the auto-provision templates do not create an ACR automatically for you. 
