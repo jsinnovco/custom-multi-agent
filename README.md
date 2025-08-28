@@ -8,7 +8,7 @@ Hi there, this GitHub repo builds off of this repo: https://github.com/microsoft
 4. MAX_TOKENS increased
 5. Leveraging GPT5 instead of GPT4-o.
 
-Please refer to the original repo if you are interested in only deploying an out of the box solution and provision a ready made environment (although we will do these in this repo as well with the instructions below). 
+Please refer to the [**original repo**](https://github.com/microsoft/Multi-Agent-Custom-Automation-Engine-Solution-Accelerator) if you are interested in only deploying an out of the box solution and provision a ready made environment (although we will do these in this repo as well with the instructions below). 
 
 <br/>
 
@@ -124,7 +124,7 @@ Step 3. Build and push your backend code to the ACR:
 
 ```az acr build --registry <acr-name> --resource-group  <rg-name> --image backendmacae:latest . ```
 
-Note that the original repo was using DevKit in its DOCKERFILEs. But in our current repo, this dependency has been removed. You can compare the DOCKERFILES between this and the original repo for relwvant changes, and you may use the DOCKERFILEs from the original repo if you have a Docker daemon running. 
+Note that the [**original repo**](https://github.com/microsoft/Multi-Agent-Custom-Automation-Engine-Solution-Accelerator) was using DevKit in its DOCKERFILEs. But in our current repo, this dependency has been removed. You can compare the DOCKERFILES between this and the original repo for relwvant changes, or you may use the DOCKERFILEs from the original repo if you have a Docker daemon running. 
 
 Step 4. Repeat the above steps but for the frontend code. You may need to log into ACR again: 
 
