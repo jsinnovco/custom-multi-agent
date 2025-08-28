@@ -85,7 +85,7 @@ NOTE: Usually all you need to do is: from an Azure CLI terminal, run: ```az logi
  <br/>To ensure sufficient quota is available in your subscription, please follow [quota check instructions guide](./docs/quota_check.md) before you deploy the solution.
 
 <br/>
-After you are done provisioning the new environment (takes about 10 mins), you should be able to go to the [**Azure Portal**](https://portal.azure.com), go to the **App Service** deployed and click 'Browse'. This should open up a window like the image below. 
+After you are done provisioning the new environment (takes about 10 mins), you should be able to go to the Azure Portal(https://portal.azure.com) , go to the App Service deployed and click 'Browse'. This should open up a window like the image below. 
 
 NOTE: When you first auto-provision the environment, it only deploys the base from this [**original repo**](https://github.com/microsoft/Multi-Agent-Custom-Automation-Engine-Solution-Accelerator) which means no custom agents yet. 
 
