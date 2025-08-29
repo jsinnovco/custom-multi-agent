@@ -19,7 +19,6 @@ This repo is being developed so keep an eye out for more featueres (like MCP int
 [**SOLUTION OVERVIEW**](#solution-overview) \| [**QUICK DEPLOY AND TESTING**](#deploying-and-testing-base-infrastructure) \| [**ADDING YOUR OWN AGENT**](#adding-your-own-agent)| [**BUSINESS SCENARIO**](#business-scenario) \| [**SUPPORTING DOCUMENTATION**](#supporting-documentation)
 
 </div>
-<br/>
 
 <h2><img src="./docs/images/readme/solution-overview.png" width="48" />
 Solution overview
@@ -65,7 +64,6 @@ The solution leverages Azure OpenAI Service, Azure Container Apps, Azure Cosmos 
 
 </details>
 
-<br />
 <h2><img src="./docs/images/readme/quick-deploy.png" width="48" />
 Deploying and Testing Base Infrastructure
 </h2>
@@ -110,7 +108,6 @@ Next, you can start playing with the application. Click on the badges to perform
 
 Your base application is working! 
 
-<br />
 <h2><img src="./docs/images/readme/quick-deploy.png" width="48" />
 Adding Your Own Agent
 </h2>
