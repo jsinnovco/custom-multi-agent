@@ -200,7 +200,7 @@ NOTE: In our current example, in the ```planner_agent.py``` file, we have added 
 That's it!
 
 Optionally, you can change your deployment scripts ```infra/main.bicep``` to change the Azure deployment behavior or add more tests in the ```tests/``` folder as needed.
-<br /><br />
+
 <h2><img src="./docs/images/readme/business-scenario.png" width="48" />
 Business Scenario
 </h2>
