@@ -65,7 +65,7 @@ The solution leverages Azure OpenAI Service, Azure Container Apps, Azure Cosmos 
 
 </details>
 
-<br /><br />
+<br />
 <h2><img src="./docs/images/readme/quick-deploy.png" width="48" />
 Deploying and Testing Base Infrastructure
 </h2>
@@ -110,7 +110,7 @@ Next, you can start playing with the application. Click on the badges to perform
 
 Your base application is working! 
 
-<br /><br />
+<br />
 <h2><img src="./docs/images/readme/quick-deploy.png" width="48" />
 Adding Your Own Agent
 </h2>
@@ -171,6 +171,12 @@ You should now see the new blade for 'planning an event'. If you click on it, th
 either by deleting the resource group in the Portal or running `azd down`.
 <br /><br />
 
+The way the application works is: when a user inputs a prompt in the UI to perform a task, the Planner Agent is invoked. This agent determines which agents to leverage and what steps to perform to complete the task. It does all this, autonomously, based on each agent definition and the task at hand. So it mimics human thinking in that it can make its own decisions. 
+
+The Planner Agent also calls the Group Chat Manager which orchestrates multi-agent and human-agent collaborative conversations, coordinating the sequence of responses and managing interactions to simulate scenarios like meetings or debates. It acts as the coordination layer for chat interactions, ensuring that the flow of conversation among different agents, or between agents and a human user, is managed effectively to achieve a common goal.
+
+Below are the code changes you'd make if you would like to add a new agent of your own.
+
 ### Frontend code changes: 
 1. In the file: ./src/frontend/src/models/homeInput.tsx, add a new blade for your new agent (Event Planner in our case): 
     {
@@ -185,11 +191,10 @@ either by deleting the resource group in the Portal or running `azd down`.
 2. In the enums.tsx file, add the ```EVENT_PLANNER = "Event_Planner_Agent"``` in your AgentType enum.
 
 ### Backend code changes: 
-1. Copy one of the existing agent files (for eg. ```src/backend/kernel_agents/PROCUREMENT_AGENT.PY```), rename it to your agent and add the instructions to the agent in the ```    def default_system_message(agent_name=None)``` method. This is the place where you 'define' your agent's capabilities. The more comprehensive, exhaustive of an instruction you can give, the more accurate the agent will be. Change the ```AgentType``` where applicable.
 
-2. Also copy one of the existing tools (for eg. ```src/backend/kernel_tools/PROCUREMENT_TOOLS.PY```). This is where you give your agent the helpers or the tools (for eg. MCP tools). In our current example, we've created basic functions that define the full capabilities of what the Event Planner Agent can do.
+1. Copy one of the existing agent files (for eg. ```src/backend/kernel_agents/PROCUREMENT_AGENT.PY```), rename it to your agent and add the instructions to the agent in the ```def default_system_message(agent_name=None)``` method. This is the place where you 'define' your agent's capabilities. The more comprehensive, exhaustive of an instruction you can give, the more accurate the agent will be. Change the ```AgentType``` where applicable.
 
-NOTE: When the Planner Agent formulates a plan, it reads through the all agent instructions, capabilities and tools definitions. So the more functions (tasks it can perform) you define, the better and more accurate the Planner Agent will be. 
+2. Also copy one of the existing tools (for eg. ```src/backend/kernel_tools/PROCUREMENT_TOOLS.PY```). This is where you give your agent the helpers or the tools (for eg. MCP tools). Thereafter, add methods ("tools") that define what your agent should do. In our current example, we've created some basic methods that define the full capabilities of what our new Event Planner Agent can do. When the Planner Agent formulates a plan, it reads through the all agent instructions, capabilities and tools definitions. So the more functions (tasks it can perform) you define, the better and more accurate the Planner Agent will be. 
 
 3. Next add your Event Planner Agent related code to ```agent_factory.py```, ```group_chat_manager.py``` and ```planner_agent.py``` in the ```src/backend/kernel_agents``` directory. In all of these, you only need to update the list (dictionary) of agents defined at the top.
 
@@ -198,7 +203,6 @@ NOTE: In our current example, in the ```planner_agent.py``` file, we have added 
 That's it!
 
 Optionally, you can change your deployment scripts ```infra/main.bicep``` to change the Azure deployment behavior or add more tests in the ```tests/``` folder as needed.
-<br /><br />
 <br /><br />
 <h2><img src="./docs/images/readme/business-scenario.png" width="48" />
 Business Scenario
