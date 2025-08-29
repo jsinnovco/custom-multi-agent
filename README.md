@@ -82,7 +82,8 @@ Your base application is working!
 <h2><img src="./docs/images/readme/quick-deploy.png" width="48" />
 Adding Your Own Agent
 </h2>
-Now, we will deploy custom agents and the new UI associated with it. 
+
+Now, we will deploy custom agents and the new UI associated with it:
 
 
 Step 0. Create an Azure Container Registry (ACR) in the resource group you are using. You can do it manually (https://learn.microsoft.com/en-us/azure/container-registry/container-registry-get-started-portal?tabs=azure-cli) in the Azure Portal or via the command line (https://learn.microsoft.com/en-us/azure/container-registry/container-registry-get-started-azure-cli). NOTE: the auto-provision templates do not create an ACR automatically for you. 
@@ -101,7 +102,7 @@ Step 3. Build and push your backend code to the ACR:
 
 ```az acr build --registry <acr-name> --resource-group  <rg-name> --image backendmacae:latest . ```
 
-Note that the [**original repo**](https://github.com/microsoft/Multi-Agent-Custom-Automation-Engine-Solution-Accelerator) was using DevKit in its DOCKERFILEs. But in our current repo, this dependency has been removed. You can compare the DOCKERFILES between this and the original repo for relwvant changes, or you may use the DOCKERFILEs from the original repo if you have a Docker daemon running. 
+Note that the [**original repo**](https://github.com/microsoft/Multi-Agent-Custom-Automation-Engine-Solution-Accelerator) was using DevKit in its DOCKERFILEs. But in our current repo, this dependency has been removed. You can compare the DOCKERFILES between this and the original repo for relavant changes, or you may use the DOCKERFILEs from the original repo if you have a Docker daemon running. 
 
 Step 4. Repeat the above steps but for the frontend code. You may need to log into ACR again: 
 
@@ -156,9 +157,9 @@ Below are the code changes you'd make if you would like to add a new agent of yo
         icon: <PeopleTeam20Regular />,
     }
 
-   Add the import for PeopleTeam20Regular icon as well.
+   Add the import for **PeopleTeam20Regular** icon as well.
 
-2. In the enums.tsx file, add the ```EVENT_PLANNER = "Event_Planner_Agent"``` in your AgentType enum.
+2. In the enums.tsx file, add the ```EVENT_PLANNER = "Event_Planner_Agent"``` in your **AgentType** enum.
 
 ### Backend code changes: 
 
