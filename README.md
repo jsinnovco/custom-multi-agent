@@ -86,7 +86,7 @@ Adding Your Own Agent
 Now, we will deploy custom agents and the new UI associated with it:
 
 
-Step 0. Create an Azure Container Registry (ACR) in the resource group you are using. You can do it manually (https://learn.microsoft.com/en-us/azure/container-registry/container-registry-get-started-portal?tabs=azure-cli) in the Azure Portal or via the command line (https://learn.microsoft.com/en-us/azure/container-registry/container-registry-get-started-azure-cli). NOTE: the auto-provision templates do not create an ACR automatically for you. 
+Step 0. Create an Azure Container Registry (ACR) in the resource group you are using. You can do it [manually](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-get-started-portal?tabs=azure-cli) in the Azure Portal or via the [command line](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-get-started-azure-cli). NOTE: the auto-provision templates do not create an ACR automatically for you. 
 
 Step 1. Go to your codebase, run  
 
@@ -98,13 +98,13 @@ Step 2. Login to ACR:
 ```az acr login --name <acr-name>```
 
 
-Step 3. Build and push your backend code to the ACR: 
+Step 3. Build and push your backend code to the ACR (_assuming_ your backend image is called **_'backendmacae:latest'_**)
 
 ```az acr build --registry <acr-name> --resource-group  <rg-name> --image backendmacae:latest . ```
 
-Note that the [**original repo**](https://github.com/microsoft/Multi-Agent-Custom-Automation-Engine-Solution-Accelerator) was using DevKit in its DOCKERFILEs. But in our current repo, this dependency has been removed. You can compare the DOCKERFILES between this and the original repo for relavant changes, or you may use the DOCKERFILEs from the original repo if you have a Docker daemon running. 
+Note that the [**original repo**](https://github.com/microsoft/Multi-Agent-Custom-Automation-Engine-Solution-Accelerator) was using DevKit in its DOCKERFILEs. But in our current repo, this dependency has been removed. You can compare the DOCKERFILES between this and the original repo for relevant changes, or you may use the DOCKERFILEs from the original repo if you have a Docker daemon running. 
 
-Step 4. Repeat the above steps but for the frontend code. You may need to log into ACR again: 
+Step 4. Repeat the above steps but for the frontend code. You may need to log into ACR again. 
 
 ```cd src/frontend```
 <br/>
@@ -120,7 +120,7 @@ Step 5. Go to the container and update revision to point to new backend image:
 <img src="./docs/images/readme/container-new-rev.png" width="80%" style="display: block; margin: auto;" />
 </p>
 
-Step 6. Update frontend website (assuming your frontend image is called 'frontendmacae:latest')
+Step 6. Update frontend website (_assuming_ your frontend image is called **_'frontendmacae:latest'_**)
 
 ```az webapp config container set --resource-group <rg-name> --name <frontend-web-app-name> --container-image-name <container-name>.azurecr.io/frontendmacae:latest  --container-registry-url https://<acr-name>.azurecr.io```
 <br/>
@@ -150,14 +150,16 @@ Below are the code changes you'd make if you would like to add a new agent of yo
 
 ### Frontend code changes: 
 1. In the file: ./src/frontend/src/models/homeInput.tsx, add a new blade for your new agent (Event Planner in our case): 
-    {
+```
+   {
         id: "event",
         title: "Plan an event",
         description: "Help me plan an event like TechConnect or Ignite.",
         icon: <PeopleTeam20Regular />,
     }
 
-   Add the import for **PeopleTeam20Regular** icon as well.
+```
+  Add the import for **PeopleTeam20Regular** icon as well.
 
 2. In the enums.tsx file, add the ```EVENT_PLANNER = "Event_Planner_Agent"``` in your **AgentType** enum.
 
