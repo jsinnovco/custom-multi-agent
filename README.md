@@ -55,8 +55,9 @@ Follow the quick deploy steps on the deployment guide to deploy this solution to
  <br/>To ensure sufficient quota is available in your subscription, please follow [quota check instructions guide](./docs/quota_check.md) before you deploy the solution.
 
 <br/>
+
 ### Testing what was deployed
-After you are done provisioning the new environment (takes about 10 mins), you should be able to go to the Azure Portal(https://portal.azure.com), go to the App Service deployed and click 'Browse'. This should open up a window like the image below. 
+After you are done provisioning the new environment (takes about 10 mins), you should be able to go to the Azure Portal (https://portal.azure.com), go to the App Service deployed and click 'Browse'. This should open up a window like the image below. 
 
 <p align="center">
 <img src="./docs/images/readme/app-first-run.png" width="80%" style="display: block; margin: auto;" />
@@ -65,7 +66,7 @@ After you are done provisioning the new environment (takes about 10 mins), you s
 
 NOTE: When you first auto-provision the environment, it only deploys the base from this [**original repo**](https://github.com/microsoft/Multi-Agent-Custom-Automation-Engine-Solution-Accelerator) which means no custom agents yet. 
 
-**Before you start testing out the application**, go to the AI Foundry service in your ressource group, open the service in [**AI Foundry portal**](https://ai.azure.com) and then click on 'Agents' tab. It should have created a base agent for you. See images below.
+**Before you start testing out the application**, go to the AI Foundry service in your ressource group, open the service in [**AI Foundry portal**](https://ai.azure.com) and then click on 'Agents' tab. It should have created a base agent for you. See image below.
 
 <p align="center">
 <img src="./docs/images/readme/ai-foundry-first-run.png" width="80%" style="display: block; margin: auto;" />
@@ -82,6 +83,8 @@ Your base application is working!
 Adding Your Own Agent
 </h2>
 Now, we will deploy custom agents and the new UI associated with it. 
+
+
 Step 0. Create an Azure Container Registry (ACR) in the resource group you are using. You can do it manually (https://learn.microsoft.com/en-us/azure/container-registry/container-registry-get-started-portal?tabs=azure-cli) in the Azure Portal or via the command line (https://learn.microsoft.com/en-us/azure/container-registry/container-registry-get-started-azure-cli). NOTE: the auto-provision templates do not create an ACR automatically for you. 
 
 Step 1. Go to your codebase, run  
