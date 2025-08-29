@@ -26,43 +26,13 @@ Solution overview
 
 The solution leverages Azure OpenAI Service, Azure Container Apps, Azure Cosmos DB, and Azure Container Registry to create an intelligent automation pipeline. It uses a multi-agent approach where specialized AI agents work together to plan, execute, and validate tasks based on user input.
 
-### Solution architecture
-|![image](./docs/images/readme/architecture.png)|
-|---|
+Refer to the original repo for the solution architecture. In this repo, we have added a new custom agent to the solution which is shown in the image below: 
 
 ### Agentic architecture
 |![image](./docs/images/readme/agent_flow_custom.png)|
 |---|
 
 <br/>
-
-### Additional resources
-
-[Semantic Kernel Documentation](https://learn.microsoft.com/en-us/semantic-kernel/)
-
-[Azure AI Foundry Documentation](https://learn.microsoft.com/en-us/azure/ai-foundry/)
-
-[Azure Container App documentation](https://learn.microsoft.com/en-us/azure/azure-functions/functions-how-to-custom-container?tabs=core-tools%2Cacr%2Cazure-cli2%2Cazure-cli&pivots=container-apps)
-
-<br/>
-
-### Key features
-<details open>
-  <summary>Click to learn more about the key features this solution enables</summary>
-
-  - **Allows people to focus on what matters** <br/>
-  By doing the heavy lifting involved with coordinating activities across an organization, people's time is freed up to focus on their specializations.
-  
-  - **Enabling GenAI to scale** <br/>
-  By not needing to build one application after another, organizations are able to reduce the friction of adopting GenAI across their entire organization. One capability can unlock almost unlimited use cases.
-
-  - **Applicable to most industries** <br/>
-  These are common challenges that most organizations face, across most industries.
-
-  - **Efficient task automation** <br/>
-  Streamlining the process of analyzing, planning, and executing complex tasks reduces time and effort required to complete organizational processes.
-
-</details>
 
 <h2><img src="./docs/images/readme/quick-deploy.png" width="48" />
 Deploying and Testing Base Infrastructure
