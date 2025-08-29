@@ -10,7 +10,7 @@ Hi there, this GitHub repo builds off of this repo: https://github.com/microsoft
 
 Please refer to the [**original repo**](https://github.com/microsoft/Multi-Agent-Custom-Automation-Engine-Solution-Accelerator) if you are interested in only deploying an out of the box solution and provision a ready made environment (although we will do these in this repo as well with the instructions below).
 
-This repo is being developed so keep an eye out for more featueres (like MCP integration, tracing etc.) that will be added in the coming weeks.
+This repo is being developed so keep an eye out for more features (like MCP integration, tracing etc.) that will be added in the coming weeks.
 
 <br/>
 
