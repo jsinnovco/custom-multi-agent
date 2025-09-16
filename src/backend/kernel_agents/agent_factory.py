@@ -19,12 +19,16 @@ from kernel_agents.marketing_agent import MarketingAgent
 from kernel_agents.planner_agent import PlannerAgent  # Add PlannerAgent import
 from kernel_agents.procurement_agent import ProcurementAgent
 from kernel_agents.event_planner_agent import EventPlannerAgent
+from kernel_agents.mslearn_mcp_agent import MCPMSLearnAgent
+from kernel_agents.travel_mcp_agent import MCPTravelAgent
 from kernel_agents.product_agent import ProductAgent
 from kernel_agents.tech_support_agent import TechSupportAgent
 from models.messages_kernel import AgentType, PlannerResponsePlan
 # pylint:disable=E0611
 from semantic_kernel.agents.azure_ai.azure_ai_agent import AzureAIAgent
 
+from opentelemetry import trace
+tracer = trace.get_tracer(__name__)
 logger = logging.getLogger(__name__)
 
 
@@ -38,6 +42,8 @@ class AgentFactory:
         AgentType.PRODUCT: ProductAgent,
         AgentType.PROCUREMENT: ProcurementAgent,
         AgentType.EVENT_PLANNER: EventPlannerAgent,
+        AgentType.MCP_MSLEARN: MCPMSLearnAgent,
+        AgentType.MCP_TRAVEL: MCPTravelAgent,
         AgentType.TECH_SUPPORT: TechSupportAgent,
         AgentType.GENERIC: GenericAgent,
         AgentType.HUMAN: HumanAgent,
@@ -52,6 +58,8 @@ class AgentFactory:
         AgentType.PRODUCT: AgentType.PRODUCT.value,
         AgentType.PROCUREMENT: AgentType.PROCUREMENT.value,
         AgentType.EVENT_PLANNER: AgentType.EVENT_PLANNER.value,
+        AgentType.MCP_MSLEARN: AgentType.MCP_MSLEARN.value,
+        AgentType.MCP_TRAVEL: AgentType.MCP_TRAVEL.value,
         AgentType.TECH_SUPPORT: AgentType.TECH_SUPPORT.value,
         AgentType.GENERIC: AgentType.GENERIC.value,
         AgentType.HUMAN: AgentType.HUMAN.value,
@@ -66,6 +74,8 @@ class AgentFactory:
         AgentType.PRODUCT: ProductAgent.default_system_message(),
         AgentType.PROCUREMENT: ProcurementAgent.default_system_message(),
         AgentType.EVENT_PLANNER: EventPlannerAgent.default_system_message(),
+        AgentType.MCP_MSLEARN: MCPMSLearnAgent.default_system_message(),
+        AgentType.MCP_TRAVEL: MCPTravelAgent.default_system_message(),
         AgentType.TECH_SUPPORT: TechSupportAgent.default_system_message(),
         AgentType.GENERIC: GenericAgent.default_system_message(),
         AgentType.HUMAN: HumanAgent.default_system_message(),

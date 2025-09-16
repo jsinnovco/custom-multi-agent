@@ -32,10 +32,22 @@ export const quickTasks: QuickTask[] = [
         description: "Write a press release about our current products.",
         icon: <DocumentEdit20Regular />,
     },
-        {
+    {
         id: "event",
         title: "Plan an event",
         description: "Help me plan an event like TechConnect or Ignite.",
+        icon: <PeopleTeam20Regular />,
+    },
+    {
+        id: "tech",
+        title: "Tell me about a technology",
+        description: "Tell me about Azure - its capabilities, comparison with other competitive tools, its width of features. ",
+        icon: <PeopleTeam20Regular />,
+    },
+    {
+        id: "travel",
+        title: "Tell me more about a travel destination",
+        description: "Tell me about Seatle - its climate, people, places to see, food to try, and travel tips.",
         icon: <PeopleTeam20Regular />,
     },
 ];

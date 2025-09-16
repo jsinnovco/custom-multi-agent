@@ -28,6 +28,9 @@ class Config:
     AZURE_AI_RESOURCE_GROUP = config.AZURE_AI_RESOURCE_GROUP
     AZURE_AI_PROJECT_NAME = config.AZURE_AI_PROJECT_NAME
     AZURE_AI_AGENT_ENDPOINT = config.AZURE_AI_AGENT_ENDPOINT
+    
+    #MCP Settings
+    TRIPADVISOR_CONNECTION_ID = config.TRIPADVISOR_CONNECTION_ID
 
     @staticmethod
     def GetAzureCredentials():

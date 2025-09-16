@@ -36,13 +36,38 @@ from models.messages_kernel import (
 
 # Updated import for KernelArguments
 from utils_kernel import initialize_runtime_and_context, rai_success
+from opentelemetry import trace
 
+from opentelemetry.sdk.resources import Resource
 
 # Check if the Application Insights Instrumentation Key is set in the environment variables
 connection_string = os.getenv("APPLICATIONINSIGHTS_CONNECTION_STRING")
 if connection_string:
     # Configure Application Insights if the Instrumentation Key is found
-    configure_azure_monitor(connection_string=connection_string)
+    configure_azure_monitor(connection_string=connection_string, 
+    resource=Resource.create(
+        {
+            "service.name": "live_metrics_service",
+            "service.instance.id": "qp_instance_id",
+        }
+    ),
+    logger_name=__name__,
+    enable_live_metrics=True,  # Enable live metrics configuration
+    )
+    tracer = trace.get_tracer(__name__)
+    logger = logging.getLogger(__name__)
+
+    # # Continuously send metrics
+    # while True:
+    #   with tracer.start_as_current_span("parent"):
+    #     logger.warning("sending request")
+    #     response = requests.get("https://azure.microsoft.com/", timeout=5)
+    #     try:
+    #         val = 1 / 0
+    #         print(val)
+    #     except ZeroDivisionError:
+    #         logger.error("Error: Division by zero", stack_info=True, exc_info=True)
+    #   time.sleep(2)
     logging.info(
         "Application Insights configured with the provided Instrumentation Key"
     )

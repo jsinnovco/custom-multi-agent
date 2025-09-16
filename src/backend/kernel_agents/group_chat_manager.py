@@ -72,6 +72,8 @@ class GroupChatManager(BaseAgent):
             AgentType.PRODUCT.value,
             AgentType.PROCUREMENT.value,
             AgentType.EVENT_PLANNER.value,
+            AgentType.MCP_MSLEARN.value,
+            AgentType.MCP_TRAVEL.value,
             AgentType.TECH_SUPPORT.value,
             AgentType.GENERIC.value,
         ]

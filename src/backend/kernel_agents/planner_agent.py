@@ -14,6 +14,8 @@ from kernel_tools.hr_tools import HrTools
 from kernel_tools.marketing_tools import MarketingTools
 from kernel_tools.procurement_tools import ProcurementTools
 from kernel_tools.event_planner_tools import EventPlannerTools
+from kernel_tools.mslearn_mcp_tools import MSLearnMCPTools
+from kernel_tools.travel_mcp_tools import TravelMCPTools
 from kernel_tools.product_tools import ProductTools
 from kernel_tools.tech_support_tools import TechSupportTools
 from models.messages_kernel import (
@@ -92,6 +94,8 @@ class PlannerAgent(BaseAgent):
             AgentType.PRODUCT.value,
             AgentType.PROCUREMENT.value,
             AgentType.EVENT_PLANNER.value,
+            AgentType.MCP_MSLEARN.value,
+            AgentType.MCP_TRAVEL.value,
             AgentType.TECH_SUPPORT.value,
             AgentType.GENERIC.value,
         ]
@@ -101,6 +105,8 @@ class PlannerAgent(BaseAgent):
             AgentType.PRODUCT: ProductTools.generate_tools_json_doc(),
             AgentType.PROCUREMENT: ProcurementTools.generate_tools_json_doc(),
             AgentType.EVENT_PLANNER: EventPlannerTools.generate_tools_json_doc(),
+            AgentType.MCP_MSLEARN: MSLearnMCPTools.generate_tools_json_doc(),
+            AgentType.MCP_TRAVEL: TravelMCPTools.generate_tools_json_doc(),
             AgentType.TECH_SUPPORT: TechSupportTools.generate_tools_json_doc(),
             AgentType.GENERIC: GenericTools.generate_tools_json_doc(),
         }
