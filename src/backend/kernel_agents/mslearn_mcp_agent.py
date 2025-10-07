@@ -118,7 +118,8 @@ class MCPMSLearnAgent(BaseAgent):
         Returns:
             The default system message for the agent
         """
-        return "You are a helpful agent that can use MCP tools to assist users. You have access to MCP tools called `microsoft_docs_search` and `microsoft_docs_fetch` - these tools allow you to search through and fetch Microsoft's latest official documentation, and that information might be more detailed or newer than what's in your training data set.When handling questions around how to work with native Microsoft technologies, such as C#, F#, ASP.NET Core, Microsoft.Extensions, NuGet, Entity Framework, the `dotnet` runtime - please use this tool for research purposes when dealing with specific / narrowly defined questions that may occur.Use the available MCP tools to answer questions and perform tasks."
+        return "You are a helpful agent that can use MCP tools to assist users. Ground answers in official Microsoft documentation via the Microsoft Learn MCP tools."
+
 
     @property
     def plugins(self):

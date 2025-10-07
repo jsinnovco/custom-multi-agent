@@ -7,6 +7,8 @@ from models.messages_kernel import AgentType
 import json
 from typing import get_type_hints
 import jsonref
+import asyncio
+from pathlib import Path
 
 # Import necessary libraries
 from azure.ai.agents.models import OpenApiTool, OpenApiConnectionAuthDetails, OpenApiConnectionSecurityScheme
@@ -26,21 +28,31 @@ class TravelMCPTools:
     async def get_travel_details(
     ) -> str:
         """Details of the TripAdvisor details on a city/region."""
-    # Load the OpenAPI specification for the service from a local JSON file using jsonref to handle references
-        with open("./tripadvisor.json", "r") as f:
+        # Load the OpenAPI specification for the service from a local JSON file using jsonref to handle references
+        # Resolve the file relative to this module so the function works regardless of current working directory
+        spec_path = Path(__file__).resolve().parent.parent / "tripadvisor.json"
+        if not spec_path.exists():
+            raise FileNotFoundError(f"TripAdvisor OpenAPI spec not found at {spec_path}")
+        with spec_path.open("r", encoding="utf-8") as f:
             openapi_spec = jsonref.loads(f.read())
 
         # Create Auth object for the OpenApiTool (note that connection or managed identity auth setup requires additional setup in Azure)
         auth = OpenApiConnectionAuthDetails(security_scheme=OpenApiConnectionSecurityScheme(connection_id=conn_id))
 
-        # Initialize the main OpenAPI tool definition for weather
+        # Initialize the main OpenAPI tool definition for TripAdvisor
         openapi_tool = OpenApiTool(
             name="tripadvisor", 
             spec=openapi_spec, 
             description="retrieve travel review, guidance and recommendation of cities or regions or countries", 
             auth=auth
         )
-        result = await openapi_tool.definitions
+        # The SDK may expose `definitions` as either an awaitable or a plain list/object.
+        defs = openapi_tool.definitions
+        if asyncio.iscoroutine(defs) or asyncio.isfuture(defs) or hasattr(defs, '__await__'):
+            result = await defs
+        else:
+            result = defs
+
         return result
 
 

@@ -41,7 +41,7 @@ export const quickTasks: QuickTask[] = [
     {
         id: "tech",
         title: "Tell me about a technology",
-        description: "Tell me about Azure - its capabilities, comparison with other competitive tools, its width of features. ",
+        description: "Tell me about Azure AI Foundry and how to integrate it with an MCP server. ",
         icon: <PeopleTeam20Regular />,
     },
     {

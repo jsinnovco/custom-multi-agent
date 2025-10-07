@@ -16,7 +16,7 @@ class MSLearnMCPTools:
     @kernel_function(
         description="Leverage the knowledge base using the MCP tool integration for Microsoft Learn website."
     )
-    async def get_mcp_details(
+    async def get_mslearn_details(
     ) -> str:
         """Details of the technology or comparison of technologies."""
         mcp_tool = McpTool(
@@ -25,7 +25,26 @@ class MSLearnMCPTools:
             allowed_tools=[],  # Optional: specify allowed tools
         )
         return mcp_tool.definitions
-
+    
+    # @staticmethod
+    # @kernel_function(
+    #     description="Perform competitor analysis using the MCP tool integration for Microsoft Learn website."
+    # )
+    # async def get_mslearn_information(
+    #     query: Annotated[str, "The query for the MSLearn MCP Agent knowledgebase"],
+    # ) -> str:
+    #     information = (
+    #         f"##### MS Learn Information\n\n"
+    #         f"**Document Name:** https://learn.microsoft.com/ \n"
+    #         f"**Domain:** MS Learn MCP Agent \n"
+    #         f"**Description:** Guidelines to search information on the Microsoft Learn website or the web and summarize the information. \n\n"
+    #         f"**Key points:**\n"
+    #         f"- Use the user query to perform a competitor analysis of the technology asked about. Use the web to find information. \n"
+    #         f"- Return the summary of your research as a response. \n"
+    #         f"{MSLearnMCPTools.formatting_instructions}"
+    #     )
+    #     return information
+    
     @classmethod
     def generate_tools_json_doc(cls) -> str:
         """

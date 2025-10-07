@@ -42,6 +42,9 @@ class EventPlannerTools:
     @staticmethod
     @kernel_function(description="Marketing & Communications.")
     async def marketing() -> str:
+        #CALL LOGIC APPS
+        #CALL FUNCTION TO SEND EMAILS
+        #CALL DATA LAKE TO STORE EMAILS
         return (
             f"##### Create and send invites, manage RSVP tracking, and coordinate pre- and post-event communications.\n"
             f"**Share wrap-up emails and upload content to internal libraries for future reference.**\n\n"
