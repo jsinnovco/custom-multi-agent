@@ -71,9 +71,9 @@ class ProductAgent(BaseAgent):
         cls,
         **kwargs: Dict[str, str],
     ) -> None:
-        """Asynchronously create the PlannerAgent.
+        """Asynchronously create the ProductAgent.
 
-        Creates the Azure AI Agent for planning operations.
+        Creates the Azure AI Agent for providing information on products.
 
         Returns:
             None
@@ -110,7 +110,7 @@ class ProductAgent(BaseAgent):
             )
 
         except Exception as e:
-            logging.error(f"Failed to create Azure AI Agent for PlannerAgent: {e}")
+            logging.error(f"Failed to create Azure AI Agent for ProductAgent: {e}")
             raise
 
     @staticmethod

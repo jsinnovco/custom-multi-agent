@@ -615,7 +615,7 @@ async def approve_step_endpoint(
 
     if client:
         try:
-            client.close()
+          client.close()
         except Exception as e:
             logging.error(f"Error sending to AIProjectClient: {e}")
     # Return a status message

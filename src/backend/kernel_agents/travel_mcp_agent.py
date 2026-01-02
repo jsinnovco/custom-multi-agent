@@ -33,7 +33,7 @@ class MCPTravelAgent(BaseAgent):
             memory_store: The Cosmos memory context
             tools: List of tools available to this agent (optional)
             system_message: Optional system message for the agent
-            agent_name: Optional name for the agent (defaults to "EventPlannerAgent")
+            agent_name: Optional name for the agent (defaults to "TravelPlannerAgent")
             client: Optional client instance
             definition: Optional definition instance
         """
@@ -42,7 +42,6 @@ class MCPTravelAgent(BaseAgent):
             # Get tools directly from TripAdvisorMCPTools class
             tools_dict = TravelMCPTools.get_all_kernel_functions()
             tools = [KernelFunction.from_method(func) for func in tools_dict.values()]
-
             # Use system message from config if not explicitly provided
         if not system_message:
             system_message = self.default_system_message(agent_name)
@@ -66,9 +65,9 @@ class MCPTravelAgent(BaseAgent):
         cls,
         **kwargs: Dict[str, str],
     ) -> None:
-        """Asynchronously create the PlannerAgent.
+        """Asynchronously create the TravelAgent.
 
-        Creates the Azure AI Agent for planning operations.
+        Creates the Azure AI Agent for planning travel.
 
         Returns:
             None
@@ -106,7 +105,7 @@ class MCPTravelAgent(BaseAgent):
             )
 
         except Exception as e:
-            logging.error(f"Failed to create Azure AI Agent for PlannerAgent: {e}")
+            logging.error(f"Failed to create Azure AI Agent for TravelPlannerAgent: {e}")
             raise
 
     @staticmethod
@@ -117,9 +116,9 @@ class MCPTravelAgent(BaseAgent):
         Returns:
             The default system message for the agent
         """
-        return "You are a helpful travel planning agent. Your job is to retrieve relevant travel reviews about hotels, restaurants from Tripadvisor and generate travel recommendations",
+        return "You are a helpful travel planning agent. Your job is to retrieve relevant travel reviews about hotels, restaurants from Tripadvisor and generate travel recommendations"
 
     @property
     def plugins(self):
-        """Get the plugins for the event planner agent."""
+        """Get the plugins for the travel planner agent."""
         return TravelMCPTools.get_all_kernel_functions()

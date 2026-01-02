@@ -68,7 +68,7 @@ class HrAgent(BaseAgent):
         cls,
         **kwargs: Dict[str, str],
     ) -> None:
-        """Asynchronously create the PlannerAgent.
+        """Asynchronously create the HRAgent.
 
         Creates the Azure AI Agent for planning operations.
 
@@ -107,7 +107,7 @@ class HrAgent(BaseAgent):
             )
 
         except Exception as e:
-            logging.error(f"Failed to create Azure AI Agent for PlannerAgent: {e}")
+            logging.error(f"Failed to create Azure AI Agent for HRAgent: {e}")
             raise
 
     @staticmethod
