@@ -1,19 +1,24 @@
-# Multi-Agent Custom Automation Engine Solution Accelerator
+# Adding Your Own Agents to the Multi-Agent Solution Accelerator
 
-Welcome to the *Multi-Agent Custom Automation Engine* solution accelerator, designed to help businesses leverage AI agents for automating complex organizational tasks. This accelerator provides a foundation for building AI-driven orchestration systems that can coordinate multiple specialized agents to accomplish various business processes.
+Hi there, this GitHub repo builds off of this repo: https://github.com/microsoft/Multi-Agent-Custom-Automation-Engine-Solution-Accelerator directly with the following changes: 
 
-When dealing with complex organizational tasks, users often face significant challenges, including coordinating across multiple departments, maintaining consistency in processes, and ensuring efficient resource utilization.
+1. A new customized agent added (by extending the codebase).
+2. Response formatting handle dmore efficiently
+3. Chat timeout increased
+4. MAX_TOKENS increased
+5. Leveraging GPT5 instead of GPT4-o.
 
-The Multi-Agent Custom Automation Engine solution accelerator allows users to specify tasks and have them automatically processed by a group of AI agents, each specialized in different aspects of the business. This automation not only saves time but also ensures accuracy and consistency in task execution.
+Please refer to the [**original repo**](https://github.com/microsoft/Multi-Agent-Custom-Automation-Engine-Solution-Accelerator) if you are interested in only deploying an out of the box solution without a customized agent.
+
+This repo is being developed so keep an eye out for more features (like MCP integration, tracing etc.) that will be added in the coming weeks.
 
 <br/>
 
 <div align="center">
   
-[**SOLUTION OVERVIEW**](#solution-overview) \| [**QUICK DEPLOY**](#quick-deploy) \| [**BUSINESS SCENARIO**](#business-scenario) \| [**SUPPORTING DOCUMENTATION**](#supporting-documentation)
+[**SOLUTION OVERVIEW**](#solution-overview) \| [**QUICK DEPLOY AND TESTING**](#deploying-and-testing-base-infrastructure) \| [**ADDING YOUR OWN AGENT**](#adding-your-own-agent)| [**BUSINESS SCENARIO**](#business-scenario) \| [**SUPPORTING DOCUMENTATION**](#supporting-documentation)
 
 </div>
-<br/>
 
 <h2><img src="./docs/images/readme/solution-overview.png" width="48" />
 Solution overview
@@ -21,58 +26,24 @@ Solution overview
 
 The solution leverages Azure OpenAI Service, Azure Container Apps, Azure Cosmos DB, and Azure Container Registry to create an intelligent automation pipeline. It uses a multi-agent approach where specialized AI agents work together to plan, execute, and validate tasks based on user input.
 
-### Solution architecture
-|![image](./docs/images/readme/architecture.png)|
-|---|
+Refer to the original repo for the solution architecture. In this repo, we have added a new custom agent to the solution which is shown in the image below: 
 
 ### Agentic architecture
-|![image](./docs/images/readme/agent_flow.png)|
+|![image](./docs/images/readme/agent_flow_custom.png)|
 |---|
 
-### How to customize
-If you'd like to customize the solution accelerator, here are some common areas to start:
-
-[Custom scenario](./docs/CustomizeSolution.md)
-
 <br/>
 
-### Additional resources
-
-[Semantic Kernel Documentation](https://learn.microsoft.com/en-us/semantic-kernel/)
-
-[Azure AI Foundry Documentation](https://learn.microsoft.com/en-us/azure/ai-foundry/)
-
-[Azure Container App documentation](https://learn.microsoft.com/en-us/azure/azure-functions/functions-how-to-custom-container?tabs=core-tools%2Cacr%2Cazure-cli2%2Cazure-cli&pivots=container-apps)
-
-<br/>
-
-### Key features
-<details open>
-  <summary>Click to learn more about the key features this solution enables</summary>
-
-  - **Allows people to focus on what matters** <br/>
-  By doing the heavy lifting involved with coordinating activities across an organization, people's time is freed up to focus on their specializations.
-  
-  - **Enabling GenAI to scale** <br/>
-  By not needing to build one application after another, organizations are able to reduce the friction of adopting GenAI across their entire organization. One capability can unlock almost unlimited use cases.
-
-  - **Applicable to most industries** <br/>
-  These are common challenges that most organizations face, across most industries.
-
-  - **Efficient task automation** <br/>
-  Streamlining the process of analyzing, planning, and executing complex tasks reduces time and effort required to complete organizational processes.
-
-</details>
-
-<br /><br />
 <h2><img src="./docs/images/readme/quick-deploy.png" width="48" />
-Quick deploy
+Deploying and Testing Base Infrastructure
 </h2>
 
 ### How to install or deploy
-Follow the quick deploy steps on the deployment guide to deploy this solution to your own Azure subscription.
+Follow the quick deploy steps on the deployment guide to deploy this solution to your own Azure subscription. YOU MUST DO THIS STEP IN ORDER TO PROVISION THE ENVIRONMENT FIRST. 
 
 [Click here to launch the deployment guide](./docs/DeploymentGuide.md)
+
+**NOTE**: Usually, all you need to do is: from an Azure CLI terminal, run: ```az login```, choose the correct subscription and finish login. Then run ```azd up``` to auto0provision a ready made environment for you with the Web App (UI) deployed.
 <br/><br/>
 
 | [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/microsoft/Multi-Agent-Custom-Automation-Engine-Solution-Accelerator) | [![Open in Dev Containers](https://img.shields.io/static/v1?style=for-the-badge&label=Dev%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/microsoft/Multi-Agent-Custom-Automation-Engine-Solution-Accelerator) |
@@ -85,36 +56,129 @@ Follow the quick deploy steps on the deployment guide to deploy this solution to
 
 <br/>
 
-### Prerequisites and Costs
+### Testing what was deployed
+After you are done provisioning the new environment (takes about 10 mins), you should be able to go to the Azure Portal (https://portal.azure.com), go to the App Service deployed and click 'Browse'. This should open up a window like the image below. 
 
-To deploy this solution accelerator, ensure you have access to an [Azure subscription](https://azure.microsoft.com/free/) with the necessary permissions to create **resource groups and resources**. Follow the steps in [Azure Account Set Up](./docs/AzureAccountSetUp.md).
+<p align="center">
+<img src="./docs/images/readme/app-first-run.png" width="80%" style="display: block; margin: auto;" />
+</p>
+<br/>
 
-Check the [Azure Products by Region](https://azure.microsoft.com/en-us/explore/global-infrastructure/products-by-region/table) page and select a **region** where the following services are available: Azure OpenAI Service, Azure AI Search, and Azure Semantic Search.
+NOTE: When you first auto-provision the environment, it only deploys the base from this [**original repo**](https://github.com/microsoft/Multi-Agent-Custom-Automation-Engine-Solution-Accelerator) which means no custom agents yet. 
 
-Here are some example regions where the services are available: East US, East US2, Japan East, UK South, Sweden Central.
+**Before you start testing out the application**, go to the AI Foundry service in your ressource group, open the service in [**AI Foundry portal**](https://ai.azure.com) and then click on 'Agents' tab. It should have created a base agent for you. See image below.
 
-Pricing varies per region and usage, so it isn't possible to predict exact costs for your usage. The majority of the Azure resources used in this infrastructure are on usage-based pricing tiers. However, Azure Container Registry has a fixed cost per registry per day.
+<p align="center">
+<img src="./docs/images/readme/ai-foundry-first-run.png" width="80%" style="display: block; margin: auto;" />
+</p>
 
-Use the [Azure pricing calculator](https://azure.microsoft.com/en-us/pricing/calculator) to calculate the cost of this solution in your subscription. [Review a sample pricing sheet for the architecture](https://azure.com/e/86d0eefbe4dd4a23981c1d3d4f6fe7ed).
-| Product | Description | Cost |
-|---|---|---|
-| [Azure OpenAI Service](https://learn.microsoft.com/azure/ai-services/openai/) | Powers the AI agents for task automation | [Pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) |
-| [Azure Container Apps](https://learn.microsoft.com/azure/container-apps/) | Hosts the web application frontend | [Pricing](https://azure.microsoft.com/pricing/details/container-apps/) |
-| [Azure Cosmos DB](https://learn.microsoft.com/azure/cosmos-db/) | Stores metadata and processing results | [Pricing](https://azure.microsoft.com/pricing/details/cosmos-db/) |
-| [Azure Container Registry](https://learn.microsoft.com/azure/container-registry/) | Stores container images for deployment | [Pricing](https://azure.microsoft.com/pricing/details/container-registry/) |
+Next, you can start playing with the application. Click on the badges to perform tasks with multi agents and see how they are created in Azure AI Foundry: 
+<p align="center">
+<img src="./docs/images/readme/ai-foundry-second-run.png" width="80%" style="display: block; margin: auto;" />
+</p>
 
+Your base application is working! 
+
+<h2><img src="./docs/images/readme/quick-deploy.png" width="48" />
+Adding Your Own Agent
+</h2>
+
+Now, we will deploy custom agents and the new UI associated with it:
+
+
+Step 0. Create an Azure Container Registry (ACR) in the resource group you are using. You can do it [manually](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-get-started-portal?tabs=azure-cli) in the Azure Portal or via the [command line](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-get-started-azure-cli). NOTE: the auto-provision templates do not create an ACR automatically for you. 
+
+Step 1. Go to your codebase, run  
+
+```cd src/backend```
+<br/>
+
+Step 2. Login to ACR: 
+
+```az acr login --name <acr-name>```
+
+
+Step 3. Build and push your backend code to the ACR (_assuming_ your backend image is called **_'backendmacae:latest'_**)
+
+```az acr build --registry <acr-name> --resource-group  <rg-name> --image backendmacae:latest . ```
+
+Note that the [**original repo**](https://github.com/microsoft/Multi-Agent-Custom-Automation-Engine-Solution-Accelerator) was using DevKit in its DOCKERFILEs. But in our current repo, this dependency has been removed. You can compare the DOCKERFILEs between this and the original repo for relevant changes, or you may use the DOCKERFILEs from the original repo if you have a Docker daemon running. 
+
+Step 4. Repeat the above steps but for the frontend code. You may need to log into ACR again. 
+
+```cd ../frontend```
+<br/>
+
+```az acr build --registry <acr-name> --resource-group <rg-name> --image frontendmacae:latest .```
+<br/>
+
+Step 5. Go to the container and update revision to point to new backend image: 
+<p align="center">
+<img src="./docs/images/readme/container-new-rev.png" width="80%" style="display: block; margin: auto;" />
+</p>
+
+Step 6. Update frontend website (_assuming_ your frontend image is called **_'frontendmacae:latest'_**)
+
+```az webapp config container set --resource-group <rg-name> --name <frontend-web-app-name> --container-image-name <container-name>.azurecr.io/frontendmacae:latest  --container-registry-url https://<acr-name>.azurecr.io```
+<br/>
+
+Step 7. Restart your Container App, then Azure App Service in the Azure Portal and then click 'Browse' again. 
+
+You should now see the new blade for 'planning an event'. If you click on it, the workflow will walk through the new agent code we added (see details below). 
+
+<p align="center">
+<img src="./docs/images/readme/app-second-run.png" width="80%" style="display: block; margin: auto;" />
+</p>
+<br/>
+<p align="center">
+<img src="./docs/images/readme/ai-foundry-third-run.png" width="80%" style="display: block; margin: auto;" />
+</p>
 <br/>
 
 >⚠️ **Important:** To avoid unnecessary costs, remember to take down your app if it's no longer in use,
 either by deleting the resource group in the Portal or running `azd down`.
-
 <br /><br />
+
+The way the application works is: when a user inputs a prompt in the UI to perform a task, the Planner Agent is invoked. This agent determines which agents to leverage and what steps to perform to complete the task. It does all this, autonomously, based on each agent definition and the task at hand. So it mimics human thinking in that it can make its own decisions. 
+
+The Planner Agent also calls the Group Chat Manager which orchestrates multi-agent and human-agent collaborative conversations, coordinating the sequence of responses and managing interactions to simulate scenarios like meetings or debates. It acts as the coordination layer for chat interactions, ensuring that the flow of conversation among different agents, or between agents and a human user, is managed effectively to achieve a common goal.
+
+Below are the code changes you'd make if you would like to add a new agent of your own.
+
+### Frontend code changes: 
+1. In the file: ./src/frontend/src/models/homeInput.tsx, add a new blade for your new agent (Event Planner in our case): 
+```
+   {
+        id: "event",
+        title: "Plan an event",
+        description: "Help me plan an event like TechConnect or Ignite.",
+        icon: <PeopleTeam20Regular />,
+    }
+
+```
+  Add the import for **PeopleTeam20Regular** icon as well.
+
+2. In the enums.tsx file, add the ```EVENT_PLANNER = "Event_Planner_Agent"``` in your **AgentType** enum.
+
+### Backend code changes: 
+
+1. Copy one of the existing agent files (for eg. ```src/backend/kernel_agents/PROCUREMENT_AGENT.PY```), rename it to your agent and add the instructions to the agent in the ```def default_system_message(agent_name=None)``` method. This is the place where you 'define' your agent's capabilities. The more comprehensive, exhaustive of an instruction you can give, the more accurate the agent will be. Change the ```AgentType``` where applicable.
+
+2. Also copy one of the existing tools (for eg. ```src/backend/kernel_tools/PROCUREMENT_TOOLS.PY```). This is where you give your agent the helpers or the tools (for eg. MCP tools). Thereafter, add methods ("tools") that define what your agent should do. In our current example, we've created some basic methods that define the full capabilities of what our new Event Planner Agent can do. When the Planner Agent formulates a plan, it reads through the all agent instructions, capabilities and tools definitions. So the more functions (tasks it can perform) you define, the better and more accurate the Planner Agent will be. 
+
+3. Next add your Event Planner Agent related code to ```agent_factory.py```, ```group_chat_manager.py``` and ```planner_agent.py``` in the ```src/backend/kernel_agents``` directory, to the ```messages_kernel.py``` in the src/backend/models directory and the ```utils_kernel.py``` in the src/backend directory. In all of these, you only need to update the list (dictionary) of agents defined at the top.
+
+NOTE: In our current example, in the ```planner_agent.py``` file, we have added some structured response formatting (to support newer models like gpt5, increased ```timeout_minutes``` and the ```max_tokens```) in the ```_create_structured_plan()``` method. You can adjust these and more (like the ```temperature``` setting) to test how your agent responds. 
+
+That's it!
+
+Optionally, you can change your deployment scripts ```infra/main.bicep``` to change the Azure deployment behavior or add more tests in the ```tests/``` folder as needed.
+
 <h2><img src="./docs/images/readme/business-scenario.png" width="48" />
 Business Scenario
 </h2>
 
-|![image](./docs/images/readme/application.png)|
-|---|
+![image](./docs/images/readme/application.png)
 
 <br/>
 
@@ -148,8 +212,6 @@ By using the *Multi-Agent Custom Automation Engine* solution accelerator, users 
 
 </details>
 
-<br /><br />
-
 <h2><img src="./docs/images/readme/supporting-documentation.png" width="48" />
 Supporting documentation
 </h2>
@@ -182,7 +244,7 @@ Check out similar solution accelerators
 
 ## Provide feedback
 
-Have questions, find a bug, or want to request a feature? [Submit a new issue](https://github.com/microsoft/Multi-Agent-Custom-Automation-Engine-Solution-Accelerator/issues) on this repo and we'll connect.
+Have questions, find a bug, or want to request a feature? [Submit a new issue](https://github.com/jsinnovco/custom-multi-agent/issues) on this repo and we'll connect.
 
 <br/>
 
