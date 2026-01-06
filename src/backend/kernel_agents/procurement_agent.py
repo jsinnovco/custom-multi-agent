@@ -67,9 +67,9 @@ class ProcurementAgent(BaseAgent):
         cls,
         **kwargs: Dict[str, str],
     ) -> None:
-        """Asynchronously create the PlannerAgent.
+        """Asynchronously create the ProcurementAgent.
 
-        Creates the Azure AI Agent for planning operations.
+        Creates the Azure AI Agent for planning, advising and managing procurements.
 
         Returns:
             None
@@ -106,7 +106,7 @@ class ProcurementAgent(BaseAgent):
             )
 
         except Exception as e:
-            logging.error(f"Failed to create Azure AI Agent for PlannerAgent: {e}")
+            logging.error(f"Failed to create Azure AI Agent for ProcurementAgent: {e}")
             raise
 
     @staticmethod

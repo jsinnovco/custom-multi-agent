@@ -14,8 +14,8 @@ from kernel_tools.hr_tools import HrTools
 from kernel_tools.marketing_tools import MarketingTools
 from kernel_tools.procurement_tools import ProcurementTools
 from kernel_tools.event_planner_tools import EventPlannerTools
-from kernel_tools.mslearn_mcp_tools import MSLearnMCPTools
 from kernel_tools.travel_mcp_tools import TravelMCPTools
+from kernel_tools.mslearn_mcp_tools import MSLearnMCPTools
 from kernel_tools.product_tools import ProductTools
 from kernel_tools.tech_support_tools import TechSupportTools
 from models.messages_kernel import (
@@ -330,6 +330,47 @@ class PlannerAgent(BaseAgent):
             Tuple containing the created plan and list of steps
         """
         try:
+            # Heuristic: if the objective references a GitHub URL or MCP/documentation search,
+            # bypass the LLM and assign the Learning agent deterministically to fetch the URL.
+            objective_lower = input_task.description.lower() if input_task.description else ""
+            import re
+
+            url_match = re.search(r"https?://[\w./\-_%]+", input_task.description or "")
+            if (
+                "github.com" in objective_lower
+                or "gitmcp.io" in objective_lower
+                or "mcp" in objective_lower
+                or "microsoft learn" in objective_lower
+                or "azure rest api" in objective_lower
+            ) and url_match:
+                # Create a simple plan that fetches the URL using the Learning agent
+                plan = Plan(
+                    id=str(uuid.uuid4()),
+                    session_id=input_task.session_id,
+                    user_id=self._user_id,
+                    initial_goal=input_task.description,
+                    overall_status=PlanStatus.in_progress,
+                    summary="Fetch referenced repository/documentation and summarize.",
+                    human_clarification_request=None,
+                )
+
+                await self._memory_store.add_plan(plan)
+
+                target_url = url_match.group(0)
+                step = Step(
+                    id=str(uuid.uuid4()),
+                    plan_id=plan.id,
+                    session_id=input_task.session_id,
+                    user_id=self._user_id,
+                    action=f"Fetch content from the URL {target_url}. Function: fetch_generic_url_content",
+                    agent=AgentType.MCP_MSLEARN.value,
+                    status=StepStatus.planned,
+                    human_approval_status=HumanFeedbackStatus.requested,
+                )
+
+                await self._memory_store.add_step(step)
+                return plan, [step]
+
             # Generate the instruction for the LLM
 
             # Get template variables as a dictionary
@@ -570,7 +611,8 @@ class PlannerAgent(BaseAgent):
         tools_list = []
 
         for agent_name, tools in self._agent_tools_list.items():
-            if agent_name in self._available_agents:
+            # agent_name is an AgentType enum; _available_agents contains string values
+            if getattr(agent_name, "value", None) in self._available_agents:
                 tools_list.append(tools)
 
         tools_str = str(tools_list)
@@ -601,6 +643,8 @@ class PlannerAgent(BaseAgent):
 
             The agents you have access to are:
             {{$agents_str}}
+
+            If the objective contains a GitHub URL, mentions "MCP", "Microsoft Learn", "Azure REST API", or requests searching documentation/code, prefer assigning the task to the Learning Agent (the agent with functions like `fetch_generic_url_content`, `fetch_azure_rest_api_docs`, `search_azure_rest_api_docs`, or `search_azure_rest_api_code`) if those functions are available.
 
             These agents have access to the following functions:
             {{$tools_str}}

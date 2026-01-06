@@ -66,7 +66,7 @@ class GenericAgent(BaseAgent):
         cls,
         **kwargs: Dict[str, str],
     ) -> None:
-        """Asynchronously create the PlannerAgent.
+        """Asynchronously create the GenericAgent.
 
         Creates the Azure AI Agent for planning operations.
 
@@ -105,7 +105,7 @@ class GenericAgent(BaseAgent):
             )
 
         except Exception as e:
-            logging.error(f"Failed to create Azure AI Agent for PlannerAgent: {e}")
+            logging.error(f"Failed to create Azure AI Agent for GenericAgent: {e}")
             raise
 
     @staticmethod

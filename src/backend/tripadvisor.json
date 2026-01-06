@@ -1,0 +1,41 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "TripAdvisor Mock API",
+    "version": "1.0.0",
+    "description": "Mock TripAdvisor OpenAPI spec for local testing"
+  },
+  "paths": {
+    "/reviews": {
+      "get": {
+        "summary": "List reviews",
+        "responses": {
+          "200": {
+            "description": "A list of reviews",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Review" }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Review": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "title": { "type": "string" },
+          "text": { "type": "string" },
+          "rating": { "type": "integer" }
+        }
+      }
+    }
+  }
+}

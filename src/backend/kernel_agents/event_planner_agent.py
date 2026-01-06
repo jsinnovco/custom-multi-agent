@@ -66,7 +66,7 @@ class EventPlannerAgent(BaseAgent):
         cls,
         **kwargs: Dict[str, str],
     ) -> None:
-        """Asynchronously create the PlannerAgent.
+        """Asynchronously create the EventPlannerAgent.
 
         Creates the Azure AI Agent for planning operations.
 
@@ -105,7 +105,7 @@ class EventPlannerAgent(BaseAgent):
             )
 
         except Exception as e:
-            logging.error(f"Failed to create Azure AI Agent for PlannerAgent: {e}")
+            logging.error(f"Failed to create Azure AI Agent for EventPlannerAgent: {e}")
             raise
 
     @staticmethod

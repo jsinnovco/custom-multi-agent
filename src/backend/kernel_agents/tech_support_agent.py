@@ -68,9 +68,9 @@ class TechSupportAgent(BaseAgent):
         cls,
         **kwargs: Dict[str, str],
     ) -> None:
-        """Asynchronously create the PlannerAgent.
+        """Asynchronously create the TechSupportAgent.
 
-        Creates the Azure AI Agent for planning operations.
+        Creates the Azure AI Agent for providing tech support.
 
         Returns:
             None
@@ -107,7 +107,7 @@ class TechSupportAgent(BaseAgent):
             )
 
         except Exception as e:
-            logging.error(f"Failed to create Azure AI Agent for PlannerAgent: {e}")
+            logging.error(f"Failed to create Azure AI Agent for TechSupportAgent: {e}")
             raise
 
     @staticmethod
@@ -118,7 +118,7 @@ class TechSupportAgent(BaseAgent):
         Returns:
             The default system message for the agent
         """
-        return "You are a Product agent. You have knowledge about product management, development, and compliance guidelines. When asked to call a function, you should summarize back what was done."
+        return "You are a Tech Support agent. You have knowledge about various technical support topics, IT administration, and equipment setup. Provide accurate and helpful assistance to users seeking technical support."
 
     @property
     def plugins(self):
